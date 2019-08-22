@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="form-signin" @submit.prevent="singin">
+        <form class="form-signin" @submit.prevent="signin">
         <img class="mb-4" src="/docs/4.2/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">請登入</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
@@ -32,12 +32,14 @@ export default {
     };
   },
   methods:{
-      singin () {
-            const api =`${process.env.APIPATH}/singin`;
-            console.log(process.env.APIPATH , process.env.CUSTOMPATH);
+      signin () {
+            const api =`${process.env.APIPATH}/admin/signin`;
             const vm = this ;
             this.$http.post(api,vm.user).then((response) => {
             console.log(response.data);
+            if(response.data.success){
+              vm.$router.push('/admin/products')
+            }
             });
       },
   },
