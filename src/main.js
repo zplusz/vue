@@ -4,22 +4,36 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import 'bootstrap';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
+
 
 import router from './router';
 import App from './App';
+import './bus';
+import currencuFilter from './filters/currency';
+import dateFilter from './filters/date';
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
+Vue.component('Loading',Loading);
+Vue.filter('currency',currencuFilter );
+Vue.filter('date', dateFilter);
+
+
 
 axios.defaults.withCredentials = true;
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
-  router, 
+  router,
 });
+
 
 router.beforeEach((to, from, next) => {
   if(to.meta.requiresAuth){

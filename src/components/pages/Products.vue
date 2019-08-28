@@ -1,5 +1,6 @@
 <template>
     <div>
+      <loading :active.sync="isLoading"></loading>
         <div class="text-right mt-4">
             <button class="btn btn-primary" @click="openModal(true)">建立新的產品</button>
         </div>
@@ -20,10 +21,10 @@
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
           <td class="text-right">
-            {{ item.origin_price}}
+            {{ item.origin_price | currency }}
           </td>
           <td class="text-right">
-            {{ item.price}}
+            {{ item.price | currency }}
           </td>
           <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
@@ -63,7 +64,7 @@
                 </div>
                 <div class="form-group">
                   <label for="customFile">或 上傳圖片
-                    <i class="fas fa-spinner fa-spin"></i>
+                    <i class="fas fa-spinner fa-spin" v-if="status.fileUploading" ></i>
                   </label>
                   <input type="file" id="customFile" class="form-control"
                     ref="files" @change="uploadFile">
@@ -171,8 +172,7 @@
                   <label for="customFile">或 上傳圖片
                     <i class="fas fa-spinner fa-spin"></i>
                   </label>
-                  <input type="file" id="customFile" class="form-control"
-                    ref="files" >
+                  <input id="customFile" class="form-control" >
                 </div>
                 <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
                   class="img-fluid" :src="tempProduct.imageUrl" alt="">
@@ -250,30 +250,44 @@
             </div>
         </div>
         </div>
+        <Pagination :pages="pagination" @emitPages="getProducts"></Pagination>
   </div>
 </template>
-    </div>
-</template>
+
 
 <script>  
 import $ from 'jquery';
+import Pagination from './../Pagination';
 
 export default {
-    data(){
+  components:{
+    Pagination,
+  },
+    data() {
         return {
             products:[],
             tempProduct:[],
+            pagination:{},
             isNew:false,
+            isLoading: false,
+            status:{
+              fileUploading:false,
+            },
         };
     },
     methods:{
-        getProducts(){
-            const api =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products`;
+        getProducts(page){
+            const api =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products?page=${page}`;
             const vm = this;
+            vm.isLoading = true;
             console.log(process.env.APIPATH , process.env.CUSTOMPATH);
             this.$http.get(api).then((response) => {
             console.log(response.data);
-            vm.products = response.data.products;
+            if (response.data.success) {
+              vm.isLoading = false;
+              vm.products = response.data.products;
+              vm.pagination = response.data.pagination;
+            }
             });
         },
         openModal(isNew, item){
@@ -338,16 +352,20 @@ export default {
             const formData = new FormData();
             formData.append('file-to-upload', uploadedFile);
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+            vm.status.fileUploading = true;
             this.$http.post(url, formData, {
               headers: {
                 'Content-Type': 'multipart/form-data',
               },
             }).then((response) => {
               console.log(response.data);
+              vm.status.fileUploading = false;
               if (response.data.success) {
                 // vm.tempProduct.imageUrl = response.data.imageUrl;
                 // console.log(vm.tempProduct);
                 vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
+              }else{
+                this.$bus.$emit('messsage:push', response.data.message, 'danger');
               }
             });
           },
