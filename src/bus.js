@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-Vue.prototype.$bus = new Vue();
+Vue.prototype.$bus = new Vue();  //將套件掛載在原型下 可以直接呼叫
 
 // Message
 // vm.$bus.$emit('messsage:push', message, status);

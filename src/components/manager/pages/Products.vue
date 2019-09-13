@@ -170,7 +170,7 @@
                 </div>
                 <div class="form-group">
                   <label for="customFile">或 上傳圖片
-                    <i class="fas fa-spinner fa-spin"></i>
+                    <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
                   </label>
                   <input id="customFile" class="form-control" >
                 </div>
@@ -265,40 +265,42 @@ export default {
   },
     data() {
         return {
-            products:[],
-            tempProduct:[],
-            pagination:{},
-            isNew:false,
-            isLoading: false,
+            products:[], //抓取後端產品資料
+            tempProduct:[], //建立新增或修改資料
+            pagination:{}, //抓取後端頁數資料
+            isNew:false, //新增與修改時的變數
+            isLoading: false, //一般動畫讀取的變數 
             status:{
-              fileUploading:false,
+              fileUploading:false, //上傳圖片的動畫讀取的變數 在index.html中使用CDN方式載入動畫
             },
         };
     },
     methods:{
-        getProducts(page){
+       //取得api資料
+        getProducts(page){ 
             const api =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products?page=${page}`;
             const vm = this;
-            vm.isLoading = true;
+            vm.isLoading = true;//啟用讀取動畫
             console.log(process.env.APIPATH , process.env.CUSTOMPATH);
             this.$http.get(api).then((response) => {
             console.log(response.data);
             if (response.data.success) {
-              vm.isLoading = false;
+              vm.isLoading = false; //資料讀取完成後再停用動畫
               vm.products = response.data.products;
-              vm.pagination = response.data.pagination;
+              vm.pagination = response.data.pagination; //存取API提供的頁數
             }
             });
         },
+        //新增資料
         openModal(isNew, item){
-            if(isNew){
+            if(isNew){  //傳入new參數 就開啟post模板 建立新的資料
                 this.tempProduct = {};
                 this.isNew = true;
-            }else{
-                this.tempProduct = Object.assign({}, item);
+            }else{   //否則就開啟put模板 並且格子內載入原本的資料可做修改
+                this.tempProduct = Object.assign({}, item);  //Object.assign()為 ES6寫法 將item寫入前方的{}空物件中 避免 tempProduct = item 的傳參考特性
                 this.isNew = false;
             }
-            $('#productModal').modal('show');
+            $('#productModal').modal('show');  //使用methods透過決定何時開啟功能
         },
         delModal(item){
             $("#delProductModal").modal("show");
@@ -309,7 +311,7 @@ export default {
             // const tempProduct=item;
             // const vm = this;
             // let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${tempProduct.id}`;
-            const vm = this;
+            const vm = this;//刪除選擇的vm.tempProduct資料
             let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
             console.log(process.env.APIPATH , process.env.CUSTOMPATH);
             this.$http.delete(api).then((response) => {
@@ -317,21 +319,23 @@ export default {
             if(response.data.success){
                 console.log('已刪除產品');
                 $('#delProductModal').modal('hide');
-                vm.getProducts();
+                vm.getProducts();//刪除資料後重新抓一次新的資料
             }else{
                 console.log('找不到產品');
             }
             });
         },
+        //編輯資料
         updateProduct(){
             let api =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product`;
-            let httpMethod = 'post';
+            let httpMethod = 'post';  //新增
             const vm = this;
-            if(!vm.isNew){
+            if(!vm.isNew){ //isNew等於false時就開啟put模板
                 api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
-                httpMethod = 'put';
+                httpMethod = 'put'; //修改
             }
             console.log(process.env.APIPATH , process.env.CUSTOMPATH);
+            //參數data是物件 所以要在用括號包起來
             this.$http[httpMethod](api,{ data: vm.tempProduct }).then((response) => {
             console.log(response.data);
             if(response.data.success){
@@ -345,17 +349,20 @@ export default {
             });
 
         },
+        //上傳圖片
         uploadFile() {
             console.log(this);
-            const uploadedFile = this.$refs.files.files[0];
+            const uploadedFile = this.$refs.files.files[0]; //已經上傳的檔案位置 陣列第0個
             const vm = this;
-            const formData = new FormData();
-            formData.append('file-to-upload', uploadedFile);
+            const formData = new FormData(); //webAPI 模擬傳統表單送出的形式
+            formData.append('file-to-upload', uploadedFile); //使用append將檔案新增到變數中 括號內參數 (前)要新增的欄位  (後)要上傳的變數
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
-            vm.status.fileUploading = true;
+            vm.status.fileUploading = true; //啟用讀取動畫
             this.$http.post(url, formData, {
+              //上傳路徑  傳送的內容  大括號的內容為一個要修改的物件
               headers: {
-                'Content-Type': 'multipart/form-data',
+                //調整headers
+                'Content-Type': 'multipart/form-data', //將Content-Type改成form-data格式
               },
             }).then((response) => {
               console.log(response.data);
@@ -364,8 +371,10 @@ export default {
                 // vm.tempProduct.imageUrl = response.data.imageUrl;
                 // console.log(vm.tempProduct);
                 vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
+                //將imageIUrl雙向綁定  使用$set將後端response.data.imageUrl裡的資料強制,寫入變數vm.tempProduct裡的'imageUrl'
               }else{
                 this.$bus.$emit('messsage:push', response.data.message, 'danger');
+                //使用emit將products中response.data.message的內容傳送給$bus 在外層alert中顯示出錯誤訊息
               }
             });
           },
