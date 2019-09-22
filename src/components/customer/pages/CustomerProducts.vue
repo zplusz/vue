@@ -169,26 +169,7 @@ export default {
             vm.isLoading = false;
           });
         },
-        createOrder() {
-          const vm = this;
-          const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
-          const order = vm.form;
-          // vm.isLoading = true;
-          this.$validator.validate().then((result) => {
-            if (result) {
-              this.$http.post(url, { data: order }).then((response) => {
-                console.log('訂單已建立', response);
-                if (response.data.success) {
-                  vm.$router.push(`/customer_checkout/${response.data.orderId}`);
-                }
-                // vm.getCart();
-                vm.isLoading = false;
-              });
-            } else {
-              console.log('欄位不完整');
-            }
-          });
-        }
+        
       },
       computed:{
         //分頁篩選

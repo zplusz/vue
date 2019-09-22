@@ -26,6 +26,7 @@ Vue.use(VueRouter);
 export default new VueRouter({
     linkActiveClass: 'active',
     routes:[
+        
         {
             path:'*', //避免用戶輸入不存在的路徑
             redirect:'/', 
@@ -39,9 +40,9 @@ export default new VueRouter({
 
         },
 
-        {   
+        { 
             name:'customerdashboard',   //元件呈現的名稱
-            path:'/',      //對應的虛擬路徑 
+            path:'',      //對應的虛擬路徑 
             component: CustomerDashboard ,  //對應的元件
             children:[
                 {
