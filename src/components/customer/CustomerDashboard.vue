@@ -1,6 +1,7 @@
 <template>
     <div>  
         <Navbar/>
+        <Alert/>
         <main role="main" class="container">
             <router-view></router-view>
         </main>
@@ -10,7 +11,8 @@
 
 <script>
 import Navbar from './Navbar';
-import Footer from './Footer'
+import Footer from './Footer';
+import Alert from '@/components/manager/AlertMessage';
 
 
 
@@ -18,6 +20,7 @@ export default {
     components:{
         Navbar,
         Footer,
+        Alert,
        
     },
     

@@ -11,7 +11,10 @@
 .footercss{
     width: auto;
     height: 100px;
-    line-height: 100px;
+    padding-top:40px ;
     position: relative;
     bottom: 0;
+}
+.gohome:hover{
+    color:grey !important; 
 }

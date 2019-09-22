@@ -10,9 +10,13 @@
     
     </head>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container" style="color:white;margin-bottom:-10px" >
+        <router-link to="/" style="text-decoration:none;" >
+        <div class="container" style="color:white;margin-bottom:-10px;" >
             <h1><i class="fa fa-plane fa-lg" aria-hidden="true"></i>&nbsp Travel Up</h1>
-        </div>
+         </div>
+        </router-link>
+
+       
     </nav>
       <div class="header">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -95,7 +99,7 @@
                 <div class="col-md-7">
                     <h4>【土耳其】卡帕多奇亞</h4>
                     <p> 被稱為「月球表面」的卡帕多奇亞是土耳其的旅遊熱點，以獨特的地形和熱氣球觀光聞名全球，曾被美國《國家地理》雜誌社評選為「十大地球美景」之一</p>
-                    <a href="#" class="btn btn-outline-info ">查看行程</a>
+                    <a href="http://localhost:8080/#/ProductDetail/-LoYitsdxQ03AlKFNiUp" class="btn btn-outline-info ">查看行程</a>
                     <div class="row mt-5">
                         <div class="col-md-6">
                             <h4>伊斯坦堡</h4>
@@ -156,7 +160,7 @@
         </div>
     </section>
     <div class="goinproduct"> 
-        <router-link to="/CustomerProducts" class="h1 nav-link text-center text-info">
+        <router-link to="/customerproducts" class="h1 nav-link text-center text-info">
         查看所有行程 >>
         </router-link>
     
