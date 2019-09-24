@@ -99,7 +99,10 @@
                 <div class="col-md-7">
                     <h4>【土耳其】卡帕多奇亞</h4>
                     <p> 被稱為「月球表面」的卡帕多奇亞是土耳其的旅遊熱點，以獨特的地形和熱氣球觀光聞名全球，曾被美國《國家地理》雜誌社評選為「十大地球美景」之一</p>
-                    <a href="http://localhost:8080/#/ProductDetail/-LoYitsdxQ03AlKFNiUp" class="btn btn-outline-info ">查看行程</a>
+                    <router-link to="/ProductDetail/-LoYitsdxQ03AlKFNiUp">
+                    <a class="btn btn-outline-info ">查看行程</a>
+                    </router-link>
+                    
                     <div class="row mt-5">
                         <div class="col-md-6">
                             <h4>伊斯坦堡</h4>

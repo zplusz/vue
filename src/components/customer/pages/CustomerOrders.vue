@@ -3,9 +3,11 @@
     <loading :active.sync="isLoading"></loading>
     
      <div class="my-5 row justify-content-center">
-      <div class=" row ">
+      <div class=" row toptable">
         <div class="mb-4">
-          <router-link to="/customerproducts"><button type="button" class="btn btn-sm btn-outline-secondary" ><i class="fa fa-angle-double-left" aria-hidden="true"></i> 繼續購物</button></router-link>
+          <router-link to="/customerproducts"><button type="button" class="btn btn-sm btn-outline-secondary" >
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i> 繼續購物</button>
+          </router-link>
         </div>
         <table class="table">
           <thead>
@@ -252,6 +254,10 @@ export default {
 
 .couponcode{
   float: left;
+}
+
+.toptable{
+  width: 550px;
 }
 
 </style>
