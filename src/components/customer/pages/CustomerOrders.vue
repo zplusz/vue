@@ -47,7 +47,7 @@
           </tfoot>
         </table>
         <div class=" my-2">
-          <div class="text-danger">今日優惠碼：{{coupons[0].code}}</div>
+          <div class="text-danger" v-if="coupons">今日優惠碼：{{coupons}}</div>
         </div>
         <div class="input-group mb-3 input-group-sm">
           <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
@@ -122,7 +122,7 @@ export default {
       product: {},
       cart: {},
       coupon_code: '',
-      coupons: {},
+      coupons:'sale8585',
       cartlength:'',
       status: {
         loadingItem: '',
@@ -182,9 +182,10 @@ export default {
       this.$http.get(url).then((response) => {
         // vm.products = response.data.products;
         vm.cart = response.data.data;
-        console.log(response);
+        console.log(vm.cart );
         vm.cartlength = vm.cart.carts.length;
         vm.isLoading = false;
+        
       });
     },
     removeCartItem(id) {
@@ -209,14 +210,14 @@ export default {
         vm.isLoading = false;
       });
     },
-    getCoupons() {
-      const vm = this;
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupons`;
-      this.$http.get(url, vm.tempProduct).then((response) => {
-        vm.coupons = response.data.coupons;
-        console.log(response);
-      });
-    },
+    // getCoupons() {
+    //   const vm = this;
+    //   const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupons`;
+    //   this.$http.get(url, vm.tempProduct).then((response) => {
+    //     vm.coupons = response.data.coupons;
+    //     console.log(vm.coupons);
+    //   });
+    // },
      createOrder() {
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
@@ -241,7 +242,7 @@ export default {
   created() {
     this.getProducts();
     this.getCart();
-    this.getCoupons();
+    // this.getCoupons();
   },
 };
 </script>

@@ -71,7 +71,7 @@
 
 <script>
 import $ from 'jquery';
-import GoTop from '@//components/customer/GoTop';
+import GoTop from '@/components/customer/GoTop';
 import ShoppingCart from '@/components/customer/ShoppingCart';
 
 export default {
@@ -155,9 +155,9 @@ export default {
             // vm.products = response.data.products;
             vm.cart = response.data.data;
             console.log(response);
-            vm.isLoading = false;
             console.log(vm.cart.carts.length);
             vm.cartlength = vm.cart.carts.length;
+            vm.isLoading = false;
           });
         },
         removeCartItem(id) {
@@ -167,6 +167,14 @@ export default {
           this.$http.delete(url).then(() => {
             vm.getCart();
             vm.isLoading = false;
+          });
+        },
+        getCoupons() {
+          const vm = this;
+          const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupons`;
+          this.$http.get(url, vm.tempProduct).then((response) => {
+            vm.coupons = response.data.coupons;
+            console.log(vm.coupons);
           });
         },
         

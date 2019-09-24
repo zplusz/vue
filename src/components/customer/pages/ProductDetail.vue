@@ -46,7 +46,7 @@ export default {
               loadingItem:'', //上傳圖片的動畫讀取的變數 在index.html中使用CDN方式載入動畫
             },
             qty: 1,
-            cart: [],
+            cart: {},
             cartlength:'',
             
         }

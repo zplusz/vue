@@ -13,7 +13,7 @@
                 <p>{{cartlength}}</p>
               </div>
               <div v-if="isShow" class="salecode"> 
-                今日85折優惠碼：sale8585
+                今日折扣碼：{{coupons}}
               </div>
        </div>        
 
@@ -27,6 +27,7 @@ export default {
   data(){
     return{
       isShow:false,
+      coupons:'sale8585',
       }
   }, 
 }
