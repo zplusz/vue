@@ -46,8 +46,12 @@
             </tr> 
           </tfoot>
         </table>
-        <div class=" my-2">
-          <div class="text-danger" v-if="coupons">今日優惠碼：{{coupons}}</div>
+        <div class=" my-3">
+
+          <div class="text-danger" v-if="coupons">今日優惠碼：{{coupons}} 
+            <button class="couponbtn" @click="copycoupon">領取優惠</button>
+          </div>
+          
         </div>
         <div class="input-group mb-3 input-group-sm">
           <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
@@ -207,17 +211,14 @@ export default {
       this.$http.post(url, { data: coupon }).then((response) => {
         console.log(response);
         vm.getCart();
+        vm.coupon_code ='';
         vm.isLoading = false;
       });
     },
-    // getCoupons() {
-    //   const vm = this;
-    //   const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupons`;
-    //   this.$http.get(url, vm.tempProduct).then((response) => {
-    //     vm.coupons = response.data.coupons;
-    //     console.log(vm.coupons);
-    //   });
-    // },
+    copycoupon(){
+      const vm =this ;
+      vm.coupon_code = vm.coupons;
+    },
      createOrder() {
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
@@ -259,6 +260,10 @@ export default {
 
 .toptable{
   width: 550px;
+}
+
+.couponbtn{
+  margin-left: 10px;
 }
 
 </style>
