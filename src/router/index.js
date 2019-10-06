@@ -1,4 +1,3 @@
-
 //官方元件
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -19,7 +18,8 @@ import CustomerDashboard from '@/components/customer/CustomerDashboard';
 import CustomerProducts from '@/components/customer/pages/CustomerProducts';
 import ProductDetail from '@/components/customer/pages/ProductDetail';
 import CustomerOrders from '@/components/customer/pages/CustomerOrders';
-import CustomerCheckouts from '@/components/customer/pages/CustomerCheckouts'
+import CustomerCheckouts from '@/components/customer/pages/CustomerCheckouts';
+import ToPay from '@/components/customer/pages/ToPay';
 
 Vue.use(VueRouter);
 
@@ -54,6 +54,11 @@ export default new VueRouter({
                   name:'customerorders',   //元件呈現的名稱
                   path:'customerorders',      //對應的虛擬路徑
                   component: CustomerOrders , 
+                },
+                {
+                  name:'topay',   //元件呈現的名稱
+                  path:'topay',      //對應的虛擬路徑
+                  component: ToPay , 
                 },
                 {
                   path: 'customercheckout/:orderId',

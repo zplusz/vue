@@ -3,15 +3,16 @@
         <router-link to="/customerorders" >
           <div class="cart">
             <i class="fa fa-shopping-cart fa-2x navi carticon" aria-hidden="true"></i>
+            <p class="cartlength" v-if="cartlength != 0">{{cartlength}}</p>
            </div>
         </router-link>
            <div class="ticket" @click.prevent='isShow = !isShow'>
              <a href="#" style="text-decoration: none"><div class="ticketicon">折％</div></a>
               
             </div>
-              <div class="cartlength" v-if="cartlength != 0">
-                <p>{{cartlength}}</p>
-              </div>
+            <router-link to="/customerorders" >
+              
+              </router-link>
               <div v-if="isShow" class="salecode"> 
                 今日折扣碼：{{coupons}}
               </div>

@@ -1,22 +1,11 @@
 <template>
   <div>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-    </head>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <router-link to="/" style="text-decoration:none;" >
         <div class="container" style="color:white;margin-bottom:-10px;" >
             <h1><i class="fa fa-plane fa-lg" aria-hidden="true"></i>&nbsp Travel Up</h1>
          </div>
         </router-link>
-
-       
     </nav>
       <div class="header">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -60,25 +49,25 @@
             </a>
         </div>
     </div>
-    <section class="bg-info py-5 text-white">
+    <section class="py-5 text-white secondblock">
         <div class="container">
             <div class="row ">
-                <div class="col-md-4">
-                    <div>
+                <div class="col-md-4 ">
+                    <div class="secondcontents">
                         <div class="secondbg1 bg-cover" style=" background-image: url(https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)"></div>
                         <h3>伏見稻荷</h3>
                         <p>伏見稻荷神社是日本稻荷神社之總本社，伏見稻荷大社它於1994年正式登記為世界文化遺產，最有名的就是一望無際的千本鳥居，遍佈整個山頭的的大量鳥居或者狐狸雕像(稻荷神的使者)</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div>
+                    <div class="secondcontents">
                         <div class="secondbg2 bg-cover" style=" background-image: url(https://images.unsplash.com/photo-1545648632-55ae72037680?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80)"></div>
                         <h3>富士山河口湖</h3>
                         <p>富士山是人人來到日本必朝聖的景點之一，河口湖位於日本山梨縣、東京西邊，是可以完整欣賞到富士山美景、屬於日本富士五湖之一、位置最北、最低海拔、知名最高的湖泊，附近也有許多知名景點</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div>
+                    <div class="secondcontents">
                         <div class="secondbg3 bg-cover" style=" background-image: url(http://images.undiff.net/articles/2015/2015-12-07_6/_Featured.jpg)"></div>
                         <h3>六本木展望台</h3>
                         <p>位於東京正中心的六本木，森大樓52F的Tokyo City View擁有360度的展望檯，東面看去有東京鐵塔、晴空塔，南面可見台場，西面為較遠的新宿高樓群及北面的東京巨蛋</p>
@@ -87,20 +76,20 @@
             </div>
         </div>
     </section>
-    <section class="container-gluid py-5 text-white" style="position: relative ; background-color:#F5F5DC">
-        <div class="row">
+    <section class="container-gluid py-5 text-white thirdblock ">
+        <div class="row rwd-ml">
             <div class="col-md-5 bg-cover "
                 style="position: absolute;top:0;bottom: 0;
                 background-image: url(https://images.unsplash.com/photo-1510253687831-0f982d7862fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80)">
             </div>
         </div>
-        <div class="container">
-            <div class="row justify-content-end text-md-dark">
+        <div class="container text-md-dark">
+            <div class="row justify-content-end ">
                 <div class="col-md-7">
                     <h4>【土耳其】卡帕多奇亞</h4>
                     <p> 被稱為「月球表面」的卡帕多奇亞是土耳其的旅遊熱點，以獨特的地形和熱氣球觀光聞名全球，曾被美國《國家地理》雜誌社評選為「十大地球美景」之一</p>
                     <router-link to="/ProductDetail/-LoYitsdxQ03AlKFNiUp">
-                    <a class="btn btn-outline-info ">查看行程</a>
+                    <a class="btn btn-info text-light ">查看行程</a>
                     </router-link>
                     
                     <div class="row mt-5">
@@ -117,7 +106,7 @@
             </div>
         </div>
     </section>
-    <section class="py-5">
+    <section class="py-5 fourthblock text-dark">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -163,13 +152,11 @@
         </div>
     </section>
     <div class="goinproduct"> 
-        <router-link to="/customerproducts" class="h1 nav-link text-center text-info">
-        查看所有行程 >>
+        <router-link to="/customerproducts" style="text-decoration:none;">
+        <p>查看所有行程 >></p>
         </router-link>
-    
     </div>
-   
-
+    <footer>練習用僅供參考，不作為商業用</footer>
   </div>
   
   
@@ -263,6 +250,30 @@ export default {
             background-position: center center;
         }
 
+        .secondblock{
+            background: linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+background: -moz-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+background: -webkit-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+background: -o-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+
+        }
+
+        .secondcontents{
+            width: 300px;
+        }
+
+        .thirdblock{
+            position: relative ; 
+            background: linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+            background: -moz-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+            background: -webkit-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+            background: -o-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+        }
+
+        .fourthblock{
+            background-color: rgba(253, 253, 253, 0.61);
+        }
+
         .header-carousel-inner {
             height: 500px;
         }
@@ -279,15 +290,25 @@ export default {
 
         .goinproduct{
             margin: auto;
+            width: 300px;
             height: 100px;
-            line-height:100px;
+            line-height:50px;
+            background-color: rgba(253, 253, 253, 0.61);
+            
             }
 
         .goinproduct p{
-            color:#00AAAA;
+            color:rgba(7, 111, 145, 0.5);
             text-align: center;
             font-size:40px;
+            text-align: center;
+            text-shadow: rgb(204, 204, 204) 0px 1px 0px, rgb(201, 201, 201) 0px 2px 0px, rgb(187, 187, 187) 0px 3px 0px, rgb(185, 185, 185) 0px 4px 0px, rgb(170, 170, 170) 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 6px 1px, rgba(0, 0, 0, 0.1) 0px 0px 5px, rgba(0, 0, 0, 0.3) 0px 1px 3px, rgba(0, 0, 0, 0.15) 0px 3px 5px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.1) 0px 20px 20px;
+            
         }       
+
+        .goinproduct p:hover{
+            color: rgb(6, 160, 180);
+        }
 
         .btimage {
             background-size: cover;
@@ -295,9 +316,24 @@ export default {
             width: 700px;
         }
 
-        @media (min-width: 768px) {
+        footer{
+            height: 80px;
+            background-color: #333;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            padding-top:30px;
+        }
+
+        @media (max-width: 768px) {
             .text-md-dark {
-                color: #333
+                color: rgb(245, 245, 245);
+                text-shadow: -2px 1px 3px #333333;
+                
+            }
+
+            .rwd-ml{
+                margin-left: 0;
             }
 
             body.modal-open {

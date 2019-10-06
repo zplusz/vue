@@ -1,36 +1,29 @@
 <template>
     <div>
       <loading :active.sync="isLoading"></loading>
-        <!-- <div class="nav-scroller py-1 mb-2">
-    <select v-model="input.category">
-      <option class="p-2 text-muted" href="#" >全部</option>
-      <option class="p-2 text-muted" href="#">東北亞</option>
-      <option class="p-2 text-muted" href="#" >東南亞</option>
-      <option class="p-2 text-muted" href="#">港澳大陸</option>
-      <option class="p-2 text-muted" href="#">歐洲</option>
-      <option class="p-2 text-muted" href="#">紐澳</option>
-    </select>
-  </div> -->
-  <div class="nav-scroller py-1 mb-2">
-      <nav class="nav d-flex justify-content-between"  >
-        <a class="p-2 text-muted" href="#" style="text-decoration:none"
-        @click.prevent="change('全部')" :class="{'searchbt' : search =='全部'}">全部</a>
-        <a class="p-2 text-muted" href="#" style="text-decoration:none"
-        @click.prevent="change('東北亞')" :class="{'searchbt':search=='東北亞'}" >東北亞</a>
-        <a class="p-2 text-muted" href="#" style="text-decoration:none"
-        @click.prevent="change('東南亞')" :class="{'searchbt':search=='東南亞'}" >東南亞</a>
-        <a class="p-2 text-muted" href="#" style="text-decoration:none"
-        @click.prevent="change('港澳大陸')" :class="{'searchbt':search=='港澳大陸'}" >港澳大陸</a>
-        <a class="p-2 text-muted" href="#" style="text-decoration:none"
-        @click.prevent="change('歐洲')" :class="{'searchbt':search=='歐洲'}" >歐洲</a>
-        <a class="p-2 text-muted" href="#" style="text-decoration:none"
-        @click.prevent="change('紐澳')" :class="{'searchbt':search=='紐澳'}" >紐澳</a>
-        </nav>                  
-    </div>    
+      <form class="form-inline mb-4 justify-content-end">
+        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" v-model.trim='keyword'>
+      </form>
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between"  >
+              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              @click.prevent="change('全部')" :class="{'searchbt' : search =='全部'}">全部</a>
+              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              @click.prevent="change('東北亞')" :class="{'searchbt':search=='東北亞'}" >東北亞</a>
+              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              @click.prevent="change('東南亞')" :class="{'searchbt':search=='東南亞'}" >東南亞</a>
+              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              @click.prevent="change('港澳大陸')" :class="{'searchbt':search=='港澳大陸'}" >港澳大陸</a>
+              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              @click.prevent="change('歐洲')" :class="{'searchbt':search=='歐洲'}" >歐洲</a>
+              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              @click.prevent="change('紐澳')" :class="{'searchbt':search=='紐澳'}" >紐澳</a>
+              </nav>                  
+          </div>    
             <div class="album py-5 bg-light ">
                 <div class="container">
                 <div class="row">
-                    <div class="col-md-4 " v-for="(item,key) in filterDatas[currentPage] " :key="item.id">
+                    <div class="col-md-4 " v-for="(item,key) in filterDatas[currentPage]" :key="item.id">
                     <div class="card mb-4 shadow-sm border border-secondary " style="height:400px">
                         <svg class="bd-placeholder-img card-img-top " width="100%" height="225" :style="{backgroundImage:`url(${item.imageUrl})`}" style="background-size: cover;height:220px"></svg>
                         <div class="card-body">
@@ -49,6 +42,7 @@
                 </div>
                 </div>
             </div>
+              <!-- 分頁 -->
              <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <li class="page-item" :class="{active: currentPage === page-1}" v-for="page in filterDatas.length" >
@@ -93,8 +87,10 @@ export default {
             status:{
               loadingItem:'', //上傳圖片的動畫讀取的變數 在index.html中使用CDN方式載入動畫
             },
-            newData:[],
             currentPage:0,
+            keyword:'',
+            newData:[],
+
             
         };
     },
@@ -180,32 +176,76 @@ export default {
         
       },
       computed:{
-        //分頁篩選
-        filterDatas(){
-          const vm = this;
-          let items=[];
-          //先篩選
-          if(vm.search !== '全部'){
-            vm.currentPage=0;
-            items = vm.products.filter((item,i)=>{
-              return item.category==vm.search
-            })
+       
+       filterDatas(){
+         
+         // 篩選有無關鍵字
+          if(this.keyword){
+            console.log(this.keyword)
+            const data = this.products
+                  return data.filter(item=> {
+                    return item.title.indexOf(this.keyword) != -1;
+                  })
           }else{
-            items = vm.products;
+            let items=[];
+            // 篩選種類
+            if(this.search !== '全部'){
+              this.currentPage=0;
+              items = this.products.filter((item,i)=>{
+                return item.category==this.search
+              })
+            }else{
+              items=this.products;
+            }
+
+              // 後分頁
+            const newData=[];
+            items.forEach((item,i) =>{
+              if( i % 9 ===0){
+                  newData.push([])
+                }
+                const page = parseInt(i/9);
+                newData[page].push(item);
+            })
+            return newData;   
           }
-          //後分頁
-          const newData=[];
-          items.forEach((item,i) =>{
-             if( i % 9 ===0){
-                newData.push([])
-              }
-              const page = parseInt(i/9);
-               newData[page].push(item);
-          })
-          return newData;   
+         
+       },
+
+
+        filterKeyword(){
           
+          if (this.keyword) {
+            console.log(this.keyword)
+                  return this.filterDatas.filter(item=> {
+                    return item.title.indexOf(this.keyword) != -1;
+                  })
+                  }else{
+                    return this.this.products
+                  }
+                   
+          
+         
+
         },
-      },
+        },
+
+
+
+        // // keywordsearch(){
+        // //   if (this.keyword) {
+        // //           return this.filterDatas.filter(item => {
+        // //             return Object.keys(item).some(function(key) {
+        // //               return String(item[key]).toLowerCase().indexOf(this.keyword) > -1
+        // //             })
+        // //               })
+        // //     }else{
+        // //       return this.filterDatas
+        // //     }
+        // // }
+
+        
+    
       created() {
         this.getProductAll();
         this.getCart();

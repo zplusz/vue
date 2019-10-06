@@ -1,9 +1,18 @@
 <template>
-  <div class="mb-5 row justify-content-center">
+<div>
+<TimeLine  class="halffinish topay" :class="{ 'finish': isFinish}"/>
+<div class="pagename">
+     <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><router-link to="/customerproducts">商品頁</router-link></li>
+          <li class="breadcrumb-item text-primary">購物車</li>
+          <li class="breadcrumb-item text-primary">結帳</li>
+          <li class="breadcrumb-item active" aria-current="page">付款</li>
+        </ol>
+      </nav>
+  </div>     
+  <div class="my-5  row justify-content-center">
     <form class="col-md-6" @submit.prevent="payOrder">
-      <div class="mb-4">
-          <router-link to="/customerproducts"><button type="button" class="btn btn-sm btn-outline-secondary" ><i class="fa fa-angle-double-left" aria-hidden="true"></i> 繼續購物</button></router-link>
-        </div>
       <table class="table">
         <thead>
           <th>品名</th>
@@ -52,17 +61,30 @@
           </tr>
         </tbody>
       </table>
-      <div class="text-right" v-if="order.is_paid === false">
-        <button class="btn btn-danger">確認付款去</button>
+      <div class="row">
+        <div class="mb-4 col">
+          <router-link to="/customerproducts"><button type="button" class="btn btn-sm btn-outline-secondary" ><i class="fa fa-angle-double-left" aria-hidden="true"></i> 繼續購物</button></router-link>
+        </div>
+        <div class="text-right col" v-if="order.is_paid === false">
+          <button class="btn btn-danger" @click="toFinish">確認付款去</button>
+        </div>
       </div>
+      
     </form>
   </div>
+</div>
 </template>
 
 <script>
+import TimeLine from '@/components/customer/TimeLine';
+
 export default {
+  components:{
+        TimeLine,
+    },
   data() {
     return {
+      isFinish:'',
       order: {
         user: {},
       },
@@ -93,9 +115,14 @@ export default {
         },1000);
         }
         vm.isLoading = false;
+        vm.finish = true;
       });
       
     },
+    toFinish(){
+      var vm = this;
+      vm.isFinish = true;
+    }
     
   },
   created() {
@@ -105,3 +132,60 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.topay >>> #secondpoint::before {
+    content: '';
+    position: absolute;
+    top: -9px;
+    left: 63px;
+    width: 17px;
+    height: 17px;
+    border: 2px solid #7e7e7e;
+    border-radius: 8px;
+    background:rgb(255, 2, 2);
+}
+
+.halffinish >>>#thirdpoint:before {
+    content: '';
+    position: absolute;
+    top: -19px;
+    right: 10px;
+    width: 17px;
+    height: 17px;
+    border: 2px solid #fd0000;
+    border-radius: 8px;
+    background:rgb(255, 255, 255);
+}  
+
+.finish >>>#thirdpoint:before {
+    content: '';
+    position: absolute;
+    top: -19px;
+    right: 10px;
+    width: 17px;
+    height: 17px;
+    border: 2px solid #7e7e7e;
+    border-radius: 8px;
+    background:rgb(255, 2, 2);
+}
+
+@media (min-width: 576px) {
+  
+.cartlist{
+  width: 70%;
+  margin: 0 auto;
+}
+.pagename{
+  display: none;
+}
+
+}
+
+.pagename{
+  background-color: white;
+  height: 10px;
+  margin-top: -150px;
+  margin-bottom: 60px;
+}
+</style>

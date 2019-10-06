@@ -1,6 +1,6 @@
 <template>
     <div class="contain">
-            <loading :active.sync="status.isLoading" loader="dots"></loading>
+            <loading :active.sync="isLoading"></loading>
             <div class="return">
                 <router-link to="/customerproducts"><button type="button" class="btn btn-sm btn-outline-secondary" ><i class="fa fa-angle-double-left" aria-hidden="true"></i> 返回商品頁</button></router-link>
             </div>
@@ -79,7 +79,6 @@ export default {
             this.$bus.$emit('messsage:push', "已加入購物車", 'success');
             vm.status.loadingItem = '';
             vm.getCart();
-            
           });
         },
         getCart() {
