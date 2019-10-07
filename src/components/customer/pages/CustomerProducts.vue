@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <div style="margin-top:-70px">
       <loading :active.sync="isLoading"></loading>
-      <form class="form-inline mb-4 justify-content-end">
-        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" v-model.trim='keyword'>
+      <form class="form-inline mb-5 mt-4 justify-content-end">
+        <input class="form-control mr-sm-2" placeholder="Search。。。" aria-label="Search" type="text" v-model.trim='keyword' id="search">
+      
       </form>
-        <div class="nav-scroller py-1 mb-2">
+        <div class="nav-scroller mb-2">
             <nav class="nav d-flex justify-content-between"  >
               <a class="p-2 text-muted" href="#" style="text-decoration:none"
               @click.prevent="change('全部')" :class="{'searchbt' : search =='全部'}">全部</a>
@@ -20,12 +21,15 @@
               @click.prevent="change('紐澳')" :class="{'searchbt':search=='紐澳'}" >紐澳</a>
               </nav>                  
           </div>    
-            <div class="album py-5 bg-light ">
+            <div class="album py-5 bg-light" style="min-height:450px">
                 <div class="container">
+                  <div :class="{'notmatch':isNotMatch}" v-if="isNotMatch">
+                    沒有符合的內容
+                  </div>
                 <div class="row">
-                    <div class="col-md-4 " v-for="(item,key) in filterDatas[currentPage]" :key="item.id">
-                    <div class="card mb-4 shadow-sm border border-secondary " style="height:400px">
-                        <svg class="bd-placeholder-img card-img-top " width="100%" height="225" :style="{backgroundImage:`url(${item.imageUrl})`}" style="background-size: cover;height:220px"></svg>
+                    <div class="col-md-4 cardmain" v-for="(item,key) in filterDatas[currentPage]" :key="item.id">
+                    <div class="card mb-4 shadow-sm border border-secondary " style="height:400px" >
+                        <svg class="bd-placeholder-img card-img-top pictureeffect" width="100%" height="225" :style="{backgroundImage:`url(${item.imageUrl})`}"></svg>
                         <div class="card-body">
                         <h3>{{ item.title }}</h3>
                         <p class="card-text">{{ item.description }}</p>
@@ -90,6 +94,7 @@ export default {
             currentPage:0,
             keyword:'',
             newData:[],
+            isNotMatch:false,
 
             
         };
@@ -178,27 +183,34 @@ export default {
       computed:{
        
        filterDatas(){
-         
-         // 篩選有無關鍵字
-          if(this.keyword){
-            console.log(this.keyword)
-            const data = this.products
-                  return data.filter(item=> {
-                    return item.title.indexOf(this.keyword) != -1;
-                  })
-          }else{
-            let items=[];
-            // 篩選種類
-            if(this.search !== '全部'){
-              this.currentPage=0;
-              items = this.products.filter((item,i)=>{
-                return item.category==this.search
-              })
-            }else{
-              items=this.products;
-            }
+         let items=[];
+         // 先分類
+        if(this.search !== '全部'){
+          this.currentPage=0;
+          items = this.products.filter((item,i)=>{
+          return item.category==this.search
+          })
+        }else{
+          items=this.products;
+        }
 
-              // 後分頁
+        //篩選關鍵字
+        if(this.keyword){
+          this.currentPage=0;
+          items=items.filter(item=> {
+          return item.title.indexOf(this.keyword) != -1;
+          })   
+        }
+
+        if(items.length !='0'){
+            this.isNotMatch=false
+            console.log(this.isNotMatch)
+        }else{
+          this.isNotMatch=true
+        }
+         
+      
+          // 後分頁
             const newData=[];
             items.forEach((item,i) =>{
               if( i % 9 ===0){
@@ -208,44 +220,9 @@ export default {
                 newData[page].push(item);
             })
             return newData;   
-          }
-         
        },
 
-
-        filterKeyword(){
-          
-          if (this.keyword) {
-            console.log(this.keyword)
-                  return this.filterDatas.filter(item=> {
-                    return item.title.indexOf(this.keyword) != -1;
-                  })
-                  }else{
-                    return this.this.products
-                  }
-                   
-          
-         
-
-        },
-        },
-
-
-
-        // // keywordsearch(){
-        // //   if (this.keyword) {
-        // //           return this.filterDatas.filter(item => {
-        // //             return Object.keys(item).some(function(key) {
-        // //               return String(item[key]).toLowerCase().indexOf(this.keyword) > -1
-        // //             })
-        // //               })
-        // //     }else{
-        // //       return this.filterDatas
-        // //     }
-        // // }
-
-        
-    
+      },
       created() {
         this.getProductAll();
         this.getCart();
@@ -257,6 +234,34 @@ export default {
 .searchbt{
   background-color: rgb(83, 193, 197);
   color:white !important;
+}
+
+.search{
+  color: rgb(180, 180, 180);
+}
+
+.notmatch{
+  text-align: center;
+  tab-size: 20px;
+}
+
+.pictureeffect{
+  background-size: cover;
+  height:220px;
+  
+}
+
+.cardmain{
+  height: 450px;
+  width: 100px;
+
+}
+.cardmain:hover{
+-webkit-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
+-moz-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
+-o-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
+-ms-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
+transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
 }
 
 </style>

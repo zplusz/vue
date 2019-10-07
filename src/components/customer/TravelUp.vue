@@ -290,7 +290,7 @@ background: -o-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
 
         .goinproduct{
             margin: auto;
-            width: 300px;
+            width: 350px;
             height: 100px;
             line-height:50px;
             background-color: rgba(253, 253, 253, 0.61);
@@ -308,6 +308,7 @@ background: -o-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
 
         .goinproduct p:hover{
             color: rgb(6, 160, 180);
+            font-size: 45px;
         }
 
         .btimage {
