@@ -18,13 +18,34 @@
           </p>
           <div class="collapse" id="collapseExample">
             <div class="card card-body">
-              <div class="row  mb-3" v-for="item in cart.carts" :key="item.id" v-if="cart.carts" >
-                <div class="col-6 text-left">{{ item.product.title }}</div>
-                <div class="col text-left">{{ item.qty }}/{{ item.product.unit }}</div>
-                <div class="col-3 text-left">{{ item.final_total | currency }}
-                <div class="text-success" v-if="item.coupon">
-                      已套用優惠券
+                <div class=" mb-3 bigmedia" v-for="item in cart.carts" :key="item.id" v-if="cart.carts" >
+                  <div class="row ">
+                    <div class="col-6 text-left">{{ item.product.title }}</div>
+                    <div class="col text-left">{{ item.qty }}/{{ item.product.unit }}</div>
+                    <div class="col-3 text-left">{{ item.final_total | currency }}
+                      <div class="text-success" v-if="item.coupon">
+                            已套用優惠券
+                      </div>
+                    </div>
                 </div>
+              </div>
+              
+              <!-- smallmedia -->
+              <div class="mb-3 smallmedia" v-for="item in cart.carts" :key="item.id" v-if="cart.carts" >  
+                <div class="row">
+                  <div class="col-2 pb-3 text-right"><button type="button" class="btn btn-outline-danger btn-sm"
+                        @click="removeCartItem(item.id)">
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                  </div>
+                  <div class="col-10 text-left">{{ item.product.title }}</div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-5"></div>
+                  <div class=" col-7 text-right">{{ item.qty }}/{{ item.product.unit }} {{ item.final_total | currency }}
+                    <div class="text-success" v-if="item.coupon">已套用優惠券</div>
+                  </div>
                 </div>
               </div>
               <hr/>
@@ -43,7 +64,7 @@
 
 
 
-        <div class="mb-5 mt-2 row justify-content-center">
+    <div class="mb-5 mt-2 row justify-content-center customerdetail">
       <form class="col-md-6" @submit.prevent="createOrder">
         <div class="form-group">
           <label for="useremail">Email</label>
@@ -245,7 +266,7 @@ export default {
     background:rgb(255, 2, 2);
 }
 
-@media (min-width: 576px) {
+@media (min-width: 992px) {
 .buylist{
   width: 50%;
   margin: 30px auto -2px;
@@ -258,8 +279,38 @@ export default {
   display: none;
 }
 
+.smallmedia{
+  display: none;
 }
 
+.bigmedia{
+  display: block;
+}
+
+}
+
+
+
+
+@media (max-width: 991.98px) {
+
+.bigmedia{
+  display: none;
+}
+
+.smallmedia{
+  display: block;
+}
+
+.buylist{
+  width: 90%;
+  margin: 30px auto -2px;
+}
+.buylist p{
+  margin-left: -20px;
+}
+
+}
 
 .pagename{
   background-color: white;

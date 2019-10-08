@@ -57,7 +57,7 @@ export default {
 .timeline{
   width: 200px;
   margin: 0 auto;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
 }
 
 .time-horizontal {

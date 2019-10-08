@@ -5,19 +5,19 @@
         <input class="form-control mr-sm-2" placeholder="Search。。。" aria-label="Search" type="text" v-model.trim='keyword' id="search">
       
       </form>
-        <div class="nav-scroller mb-2">
+        <div class="nav-scroller mb-2 search">
             <nav class="nav d-flex justify-content-between"  >
-              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              <a class="p-2 search" href="" style="text-decoration:none"
               @click.prevent="change('全部')" :class="{'searchbt' : search =='全部'}">全部</a>
-              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              <a class="p-2 search" href="#" style="text-decoration:none"
               @click.prevent="change('東北亞')" :class="{'searchbt':search=='東北亞'}" >東北亞</a>
-              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              <a class="p-2 search" href="#" style="text-decoration:none"
               @click.prevent="change('東南亞')" :class="{'searchbt':search=='東南亞'}" >東南亞</a>
-              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              <a class="p-2 search" href="#" style="text-decoration:none"
               @click.prevent="change('港澳大陸')" :class="{'searchbt':search=='港澳大陸'}" >港澳大陸</a>
-              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              <a class="p-2 search" href="#" style="text-decoration:none"
               @click.prevent="change('歐洲')" :class="{'searchbt':search=='歐洲'}" >歐洲</a>
-              <a class="p-2 text-muted" href="#" style="text-decoration:none"
+              <a class="p-2 search" href="#" style="text-decoration:none"
               @click.prevent="change('紐澳')" :class="{'searchbt':search=='紐澳'}" >紐澳</a>
               </nav>                  
           </div>    
@@ -35,7 +35,7 @@
                         <p class="card-text">{{ item.description }}</p>
                         <div class="d-flex justify-content-between align-items-center ">
                             <p class="h4 text-danger ">{{ item.price | currency }}</p>
-                            <div class="btn-group">
+                            <div class="btn-group bigmedia">
                             <button type="button" class="btn btn-sm btn-outline-secondary" @click="toDetailPage(item.id)" >查看行程</button>
                             <button type="button" class="btn btn-sm btn-outline-secondary" @click="addtoCart(item.id)" >購入行程</button>
                             </div>
@@ -233,11 +233,15 @@ export default {
 <style>
 .searchbt{
   background-color: rgb(83, 193, 197);
-  color:white !important;
+  color:rgb(255, 255, 255) !important;
 }
 
 .search{
-  color: rgb(180, 180, 180);
+  color: rgb(134, 134, 134);
+}
+
+.search:hover {
+  color: rgb(134, 134, 134);
 }
 
 .notmatch{
@@ -253,7 +257,7 @@ export default {
 
 .cardmain{
   height: 450px;
-  width: 100px;
+ 
 
 }
 .cardmain:hover{
@@ -263,5 +267,7 @@ export default {
 -ms-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
 transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
 }
+
+
 
 </style>
