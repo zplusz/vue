@@ -2,7 +2,7 @@
     <div style="margin-top:-70px">
       <loading :active.sync="isLoading"></loading>
       <form class="form-inline mb-5 mt-4 justify-content-end">
-        <input class="form-control mr-sm-2" placeholder="Search。。。" aria-label="Search" type="text" v-model.trim='keyword' id="search">
+        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" v-model.trim='keyword' id="search">
       
       </form>
         <div class="nav-scroller mb-2 search">
@@ -37,7 +37,7 @@
                             <p class="h4 text-danger ">{{ item.price | currency }}</p>
                             <div class="btn-group bigmedia">
                             <button type="button" class="btn btn-sm btn-outline-secondary" @click="toDetailPage(item.id)" >查看行程</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary" @click="addtoCart(item.id)" >購入行程</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" :disabled="isDisabled" @click="addtoCart(item.id)" >購入行程</button>
                             </div>
                         </div>
                         </div>
@@ -95,6 +95,7 @@ export default {
             keyword:'',
             newData:[],
             isNotMatch:false,
+            isDisabled:false,
 
             
         };
@@ -136,6 +137,7 @@ export default {
           const vm = this;
           const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
           vm.status.loadingItem = id;
+          vm.isDisabled=true;
           const cart = {
             product_id: id,
             qty,
@@ -145,7 +147,7 @@ export default {
             this.$bus.$emit('messsage:push', "已加入購物車", 'success');
             vm.status.loadingItem = '';
             vm.getCart();
-            // $('#productModal').modal('hide');
+            vm.isDisabled=false;
           });
         },
         getCart() {
@@ -232,8 +234,8 @@ export default {
 </script>
 <style>
 .searchbt{
-  background-color: rgb(83, 193, 197);
-  color:rgb(255, 255, 255) !important;
+  background-color: rgb(176, 247, 243);
+  /* color:rgb(255, 255, 255) !important; */
 }
 
 .search{
@@ -261,11 +263,11 @@ export default {
 
 }
 .cardmain:hover{
--webkit-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
--moz-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
--o-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
--ms-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
-transform: translate(0px, -4px) rotate(0deg) skew(0deg, 0deg) scale(1, 1.1);
+-webkit-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
+-moz-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
+-o-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
+-ms-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
+transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
 }
 
 

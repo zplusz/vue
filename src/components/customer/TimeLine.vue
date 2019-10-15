@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    props:['toPay','finish'],
+    
     data(){
         return{
             toPay:'',

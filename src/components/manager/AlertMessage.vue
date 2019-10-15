@@ -1,13 +1,3 @@
-import Vue from 'vue';
-
-Vue.prototype.$bus = new Vue();
-
-// Message
-// vm.$bus.$emit('messsage:push', message, status);
-// message(String): 訊息內容
-// status(String): Alert 的樣式
-  68  src/components/AlertMessage.vue 
-@@ -0,0 +1,68 @@
 <template>
   <div class="message-alert">
     <div class="alert alert-dismissible"

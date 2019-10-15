@@ -35,7 +35,7 @@
           </div>
           
 
-          <div class="mb-3 smallmedia" v-for="item in cart.carts" :key="item.id" v-if="cart.carts" >  
+          <div class="mb-3 smallmedia" v-for="item in cart.carts"  v-if="cart.carts" >  
             <div class="row">
               <div class="col-2 pb-3 text-right"><button type="button" class="btn btn-outline-danger btn-sm"
                     @click="removeCartItem(item.id)">

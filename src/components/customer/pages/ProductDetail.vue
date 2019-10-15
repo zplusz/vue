@@ -20,7 +20,7 @@
                             <option selected disabled>-請選擇數量-</option>
                             <option v-for="qty in 10" :value="qty" :key="qty">{{ qty}} {{ product.unit }}</option>
                         </select>
-                        <a href="#" class="btn btn-outline-secondary btn-lg float-right mt-4" @click.prevent="addtoCart(product.id,qty)">購入行程</a>
+                        <a href="#" class="btn btn-outline-secondary btn-lg float-right mt-4" :disabled="isDisabled" @click.prevent="addtoCart(product.id,qty)">購入行程</a>
                     </div>
                 </div>   
             </div>
@@ -48,6 +48,7 @@ export default {
             qty: 1,
             cart: {},
             cartlength:'',
+            isDisabled:false,
             
         }
 
@@ -70,6 +71,7 @@ export default {
           const vm = this;
           const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
           vm.status.loadingItem = id;
+          vm.isDisabled=true;
           const cart = {
             product_id: id,
             qty,
@@ -80,6 +82,7 @@ export default {
             vm.status.loadingItem = '';
             vm.getCart();
           });
+           vm.isDisabled=false;
         },
         getCart() {
           const vm = this;
