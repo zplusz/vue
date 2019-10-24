@@ -63,22 +63,22 @@ export default {
 <style scoped>
 .goTop {
     position: fixed;
-    right: 60px;
+    right: 10px;
     bottom: 130px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: gray;
+    background: #2d5479;
     padding: 10px;
     cursor: pointer;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
 }
 .goTop:hover{
-    background: darkgray;
+    background: #044b8d;
 }
 .goTopIcon {
     font-size: 20px;
-    color: rgba(61, 236, 213, 0.781);
+    color: rgba(255, 255, 255);
     padding-left: 4px;
 }
 </style>

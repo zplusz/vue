@@ -51,18 +51,18 @@
     </div>
     <section class="py-5 text-white secondblock">
         <div class="container">
-            <div class="row mx-lg-n5">
-                <div class="col-md-4 px-lg-5">
+            <div class="row">
+                <div class="col-md-4 ">
                         <div class="secondbg1 bg-cover" style=" background-image: url(https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)"></div>
                         <h3>伏見稻荷</h3>
                         <p>伏見稻荷神社是日本稻荷神社之總本社，伏見稻荷大社它於1994年正式登記為世界文化遺產，最有名的就是一望無際的千本鳥居，遍佈整個山頭的的大量鳥居或者狐狸雕像(稻荷神的使者)</p>
                 </div>
-                <div class="col-md-4 px-lg-5">
+                <div class="col-md-4 ">
                         <div class="secondbg2 bg-cover" style=" background-image: url(https://images.unsplash.com/photo-1545648632-55ae72037680?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80)"></div>
                         <h3>富士山河口湖</h3>
                         <p>富士山是人人來到日本必朝聖的景點之一，河口湖位於日本山梨縣、東京西邊，是可以完整欣賞到富士山美景、屬於日本富士五湖之一、位置最北、最低海拔、知名最高的湖泊，附近也有許多知名景點</p>
                 </div>
-                <div class="col-md-4 px-lg-5">
+                <div class="col-md-4 ">
                         <div class="secondbg3 bg-cover" style=" background-image: url(http://images.undiff.net/articles/2015/2015-12-07_6/_Featured.jpg)"></div>
                         <h3>六本木展望台</h3>
                         <p>位於東京正中心的六本木，森大樓52F的Tokyo City View擁有360度的展望檯，東面看去有東京鐵塔、晴空塔，南面可見台場，西面為較遠的新宿高樓群及北面的東京巨蛋</p>
@@ -72,14 +72,13 @@
     </section>
     <section class="container-gluid py-5 text-white thirdblock ">
         <div class="row rwd-ml mx-lg-n5">
-            <div class="col-md-5 bg-cover px-lg-5"
-                style="position: absolute;top:0;bottom: 0;
-                background-image: url(https://images.unsplash.com/photo-1510253687831-0f982d7862fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80)">
+            <div class="col-md-5 bg-cover px-lg-5 shade">
+                <div class="shaded"></div>
             </div>
         </div>
         <div class="container text-md-dark">
             <div class="row justify-content-end ">
-                <div class="col-md-7">
+                <div class="col-md-7 worldcss">
                     <h4>【土耳其】卡帕多奇亞</h4>
                     <p> 被稱為「月球表面」的卡帕多奇亞是土耳其的旅遊熱點，以獨特的地形和熱氣球觀光聞名全球，曾被美國《國家地理》雜誌社評選為「十大地球美景」之一</p>
                     
@@ -120,7 +119,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row py-4">
+            <div class="row">
                 <div class="col-md-6">
                     <div class="d-flex">
                         <div class="mr-2 btimage" style="background-image:url(http://www.xizanglvxing.com/UploadFiles/20123/201203161127050071.jpg)"></div>
@@ -142,9 +141,9 @@
             </div>
         </div>
     </section>
-    <div class="goinproduct"> 
+    <div class="nav_li_pb goinproduct"> 
         <router-link to="/customerproducts" style="text-decoration:none;">
-        <p>查看所有行程 >></p>
+       <p> <i>查</i><i>看</i><i>所</i><i>有</i><i>行</i><i>程</i> <i>></i><i>></i> </p>
         </router-link>
     </div>
     <footer>練習用僅供參考，不作為商業用</footer>
@@ -157,15 +156,6 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-crossorigin="anonymous"></script>
 
 <script>
   $(document).ready(function () {
@@ -228,104 +218,223 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-        .btn {
-            border-width: 2px;
-        }
 
-        .form-control {
-            border-width: 2px;
-        }
+.btn {
+    border-width: 2px;
+}
 
-        .bg-cover {
-            background-size: cover;
-            background-position: center center;
-        }
+.form-control {
+    border-width: 2px;
+}
 
-        .secondblock{
-            background: linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
-background: -moz-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
-background: -webkit-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
-background: -o-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+.bg-cover {
+    background-size: cover;
+    background-position: center center;
+}
 
-        }
+.secondblock{
+    background: linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+    background: -moz-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+    background: -webkit-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
+    background: -o-linear-gradient(360deg, #2E2E2E 17%, #424241 88%);
 
-        .thirdblock{
-            position: relative ; 
-            background: linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
-            background: -moz-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
-            background: -webkit-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
-            background: -o-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
-        }
+}
 
-        .fourthblock{
-            background-color: rgba(253, 253, 253, 0.61);
-        }
+.thirdblock{
+    position: relative ; 
+    background: linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+    background: -moz-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+    background: -webkit-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+    background: -o-linear-gradient(180deg, #363636 5%, #6E6E6E 83%);
+}
 
-        .header-carousel-inner {
-            height: 500px;
-        }
+.fourthblock{
+    background-color: rgba(253, 253, 253, 0.61);
+}
 
-        .secondbg1,.secondbg2,.secondbg3{
-            height: 150px;
-            width: 300px;
-            margin-bottom: 20px;
-        }
+.header-carousel-inner {
+    height: 500px;
+}
 
-        .carousel-caption {
-            background-color: rgba(0, 0, 0, .4)
-        }
+.secondbg1,.secondbg2,.secondbg3{
+    height: 150px;
+    margin-bottom: 20px;
+}
 
-        .goinproduct{
-            margin: auto;
-            width: 350px;
-            height: 100px;
-            line-height:50px;
-            background-color: rgba(253, 253, 253, 0.61);
-            
-            }
+.carousel-caption {
+    background-color: rgba(0, 0, 0, .4)
+}
 
-        .goinproduct p{
-            color:rgba(7, 111, 145, 0.726);
-            text-align: center;
-            font-size:40px;
-            text-align: center;
-            
-            
-        }       
+.goinproduct{
+    margin: auto;
+    width: 350px;
+    height: 100px;
+    line-height:50px;
+    background-color: rgba(253, 253, 253, 0.61);
+    
+    }
 
-        .goinproduct p:hover{
-            color: rgb(6, 160, 180);
-            font-size: 45px;
-        }
+.goinproduct p{
+    color: #044b8d;
+    text-align: center;
+    font-size:40px;
+    text-align: center;
+    
+    
+}       
 
-        .btimage {
-            background-size: cover;
-            height: 150px;
-            width: 700px;
-        }
+.goinproduct p:hover{
+    color:#002b53;
+    font-size: 45px;
+}
 
-        footer{
-            height: 80px;
-            background-color: #333;
-            color: white;
-            font-size: 15px;
-            text-align: center;
-            padding-top:30px;
-        }
+.btimage {
+    background-size: cover;
+    height: 150px;
+    width: 700px;
+}
 
-        @media (max-width: 768px) {
-            .text-md-dark {
-                color: rgb(245, 245, 245);
-                text-shadow: -2px 1px 3px #333333;
-                
-            }
+footer{
+    height: 80px;
+    background-color: #333;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    padding-top:30px;
+}
 
-            .rwd-ml{
-                margin-left: 0;
-            }
+.shade{
+   position: absolute;
+   top:0;
+   bottom: 0;
+   background-image: url(https://images.unsplash.com/photo-1510253687831-0f982d7862fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80);
+    
+}
 
-            body.modal-open {
-                padding-right: 0 !important;
-            }
-        }
+@media (max-width: 767.98px) {
+
+/* .shaded{
+width: 400px;
+height: 800px;
+margin-left: -20px;
+background-color: #5e5e5ed7;
+opacity:0.7;
+} */
+
+.worldcss{
+background-color: #e2e2e279;
+line-height: 25px;
+letter-spacing:3px;
+color: #000000;
+padding-top: 20px;
+}
+
+
+
+
+.rwd-ml{
+margin-left: 0;
+    }
+
+body.modal-open {
+padding-right: 0 !important;
+}
+
+
+}
+
+/* 查看所有行程特效 */
+.nav_li_pb {
+	font-size:18px;
+	color:#ef9208;
+}
+.nav_li_pb i {
+	font-style:normal;
+}
+.nav_li_pb i {
+	display:inline-block;
+	vertical-align:bottom;
+	-webkit-animation-name:fontSizeUp1;
+	animation-name:fontSizeUp1;
+	-webkit-animation-duration:5s;
+	animation-duration:5s;
+	-webkit-animation-timing-function:steps(1,end);
+	animation-timing-function:steps(1,end);
+	-webkit-animation-fill-mode:none;
+	animation-fill-mode:none;
+	-webkit-animation-iteration-count:infinite;
+	animation-iteration-count:infinite;
+	-webkit-transform-origin:50% 75%;
+	transform-origin:50% 75%;
+}
+.nav_li_pb i:nth-of-type(1) {
+	-webkit-animation-delay:0s;
+	animation-delay:0s;
+}
+.nav_li_pb i:nth-of-type(2) {
+	-webkit-animation-delay:0.5s;
+	animation-delay:0.5s;
+}
+.nav_li_pb i:nth-of-type(3) {
+	-webkit-animation-delay:1s;
+	animation-delay:1s;
+}
+.nav_li_pb i:nth-of-type(4) {
+	-webkit-animation-delay:1.5s;
+	animation-delay:1.5s;
+}
+.nav_li_pb i:nth-of-type(5) {
+	-webkit-animation-delay:2s;
+	animation-delay:2s;
+}
+.nav_li_pb i:nth-of-type(6) {
+	-webkit-animation-delay:2.5s;
+	animation-delay:2.5s;
+}
+.nav_li_pb i:nth-of-type(7) {
+	-webkit-animation-delay:3s;
+	animation-delay:3s;
+}
+.nav_li_pb i:nth-of-type(8) {
+	-webkit-animation-delay:3.5s;
+	animation-delay:3.5s;
+}
+.nav_li_pb i:nth-of-type(9) {
+	-webkit-animation-delay:4s;
+	animation-delay:4s;
+}
+.nav_li_pb i:nth-of-type(10) {
+	-webkit-animation-delay:4.5s;
+	animation-delay:4.5s;
+}
+.nav_li_pb i:nth-of-type(11) {
+	-webkit-animation-delay:5s;
+	animation-delay:5s;
+}
+.nav_li_pb i:nth-of-type(12) {
+	-webkit-animation-delay:5.5s;
+	animation-delay:5.5s;
+}
+@-webkit-keyframes fontSizeUp1 {
+	0% {
+	-webkit-transform:scale(1.25);
+	transform:scale(1.25);
+}
+7%,100% {
+	-webkit-transform:scale(1);
+	transform:scale(1);
+}
+}@keyframes fontSizeUp1 {
+	0% {
+	-webkit-transform:scale(1.25);
+	transform:scale(1.25);
+}
+7%,100% {
+	-webkit-transform:scale(1);
+	transform:scale(1);
+}
+}.nav_li_pb .fontSizeUp1 {
+	-webkit-animation-name:fontSizeUp1;
+	animation-name:fontSizeUp1;
+}
 </style>

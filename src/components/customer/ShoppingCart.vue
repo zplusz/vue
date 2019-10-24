@@ -59,7 +59,7 @@ export default {
 }
 
 .cart:hover{
-  background-color:gray;
+  background-color:#002b53;
 }
 
 .cartlength{
@@ -89,11 +89,11 @@ export default {
 }
 
 .ticket:hover{
-  background-color:gray;
+  background-color:#002b53;
 }
 
 .salecode{
-  background-color:rgb(176, 247, 243);
+  background-color:#002b53;
   position: relative;
   margin-left: -200px;
   margin-top: -60px;
@@ -101,7 +101,7 @@ export default {
   padding-top: 20px;
   width: 200px;
   height: 60px;
-  color: gray;
+  color: rgb(255, 255, 255);
 }
 
 

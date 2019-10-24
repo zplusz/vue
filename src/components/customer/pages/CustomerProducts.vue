@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-top:-70px">
+    <div class="pdmain">
       <loading :active.sync="isLoading"></loading>
       <form class="form-inline mb-5 mt-4 justify-content-end">
         <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" type="text" v-model.trim='keyword' id="search">
@@ -29,17 +29,27 @@
                 <div class="row">
                     <div class="col-md-4 cardmain" v-for="(item,key) in filterDatas[currentPage]" :key="item.id">
                     <div class="card mb-4 shadow-sm border border-secondary " style="height:400px" >
-                        <svg class="bd-placeholder-img card-img-top pictureeffect" width="100%" height="225" :style="{backgroundImage:`url(${item.imageUrl})`}"></svg>
+                        <div class="bd-placeholder-img card-img-top pictureeffect "  :style="{backgroundImage:`url(${item.imageUrl})`}"></div>
+                        <button class="pictureeffected" @click="toDetailPage(item.id)"> LOOK</button>
                         <div class="card-body">
-                        <h3>{{ item.title }}</h3>
-                        <p class="card-text">{{ item.description }}</p>
-                        <div class="d-flex justify-content-between align-items-center ">
-                            <p class="h4 text-danger ">{{ item.price | currency }}</p>
-                            <div class="btn-group bigmedia">
+                        <p class="item-title">{{ item.title }}</p>
+                        <p class="card-text item-description">{{ item.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center moneynbt">
+                            <p class="h5 text-danger ">{{ item.price | currency }}</p>
+                            <div class="btn-group mediabutton">
                             <button type="button" class="btn btn-sm btn-outline-secondary" @click="toDetailPage(item.id)" >查看行程</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary" :disabled="isDisabled" @click="addtoCart(item.id)" >購入行程</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" :disabled="status.loadingItem  !== '' " @click="addtoCart(item.id)" >購入行程</button>
                             </div>
                         </div>
+                        <div class="rangemediabutton">
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" @click="toDetailPage(item.id)" >查看行程</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" :disabled="status.loadingItem  !== '' " @click="addtoCart(item.id)" >購入行程</button>
+                              </div>
+                             
+                                
+                              
+                            </div>
                         </div>
                     </div>
                     </div>
@@ -137,7 +147,6 @@ export default {
           const vm = this;
           const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
           vm.status.loadingItem = id;
-          vm.isDisabled=true;
           const cart = {
             product_id: id,
             qty,
@@ -147,7 +156,6 @@ export default {
             this.$bus.$emit('messsage:push', "已加入購物車", 'success');
             vm.status.loadingItem = '';
             vm.getCart();
-            vm.isDisabled=false;
           });
         },
         getCart() {
@@ -223,7 +231,7 @@ export default {
             })
             return newData;   
        },
-
+       
       },
       created() {
         this.getProductAll();
@@ -234,17 +242,15 @@ export default {
 </script>
 <style>
 .searchbt{
-  background-color: rgb(176, 247, 243);
-  /* color:rgb(255, 255, 255) !important; */
+  background-color: #002b53;
+  color:white !important;
 }
 
 .search{
-  color: rgb(134, 134, 134);
+  color: #002b53;
 }
 
-.search:hover {
-  color: rgb(134, 134, 134);
-}
+
 
 .notmatch{
   text-align: center;
@@ -253,21 +259,114 @@ export default {
 
 .pictureeffect{
   background-size: cover;
-  height:220px;
-  
+  height:211px; 
+  position:relative;
+
+}
+
+.pictureeffected{
+  display: none;
+}
+
+.rangemediabutton{
+  display: none;
+}
+
+@media (min-width: 1200px){
+
+.pictureeffected{
+  background-color: rgba(0, 0, 0, 0.397);
+  height:208px; 
+  width: 336px;
+  position:absolute; 
+  bottom:189px; 
+  left:1px;
+  color: rgb(214, 214, 214);
+  font-size: 20px;
+  text-align: center;
+  line-height: 220px;
+  letter-spacing:3px;
+  opacity:0;
+  display: block;
+}
+
+.pictureeffected:hover{
+  opacity: 1;
+ 
 }
 
 .cardmain{
   height: 450px;
- 
+}
 
 }
-.cardmain:hover{
--webkit-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
--moz-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
--o-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
--ms-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
-transform: translate(3px, -14px) rotate(0deg) skew(0deg, 0deg) scale(1, 1);
+
+.item-title{
+  font-size: 23px;
+  font-weight: bold;
+}
+
+
+.mediabutton{
+  margin-top: -5px;
+}
+
+
+
+@media (min-width: 768px) and (max-width: 991.98px){
+
+.rangemediabutton{
+  display: block;
+  text-align: center;
+}
+
+.mediabutton{
+  display: none !important;
+}
+
+.item-title{
+  font-size: 15px;
+}
+.item-description{
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px){
+
+
+.item-description{
+  width: 18em;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.moneynbt{
+  margin-top: 40px;
+}
+
+}
+
+@media (max-width: 767.98px) {
+
+.pdmain{
+
+margin-top:-140px
+}
+
+}
+
+@media (min-width: 768px) { 
+
+.pdmain{
+
+margin-top:-70px
+}
+
 }
 
 
