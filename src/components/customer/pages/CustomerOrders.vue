@@ -15,9 +15,9 @@
       <div class="card-header text-center" >
         購買清單
       </div>
-      <div class="card-body ">
+      <div class="card-body " v-if="cart.carts">
         <div v-if="!cartlength" class="text-center my-5">目前沒有購買任何行程!</div>
-          <div class="mb-3 odbigmedia" v-for="item in cart.carts" :key="item.id" v-if="cart.carts" > 
+          <div class="mb-3 odbigmedia" v-for="item in cart.carts" :key="item.id"  > 
             <div class="row">
               <div class="col-5 text-left">{{ item.product.title }}</div>
             <div class="col-2 text-left">{{ item.qty }}/{{ item.product.unit }}</div>
@@ -34,8 +34,8 @@
             </div>
           </div>
           
-
-          <div class="mb-3 odsmallmedia" v-for="item in cart.carts"  v-if="cart.carts" >  
+          <div v-if="cart.carts">
+          <div class="mb-3 odsmallmedia" v-for="item in cart.carts">  
             <div class="row">
               <div class="col-2 pb-3 text-right"><button type="button" class="btn btn-outline-danger btn-sm"
                     @click="removeCartItem(item.id)">
@@ -52,6 +52,7 @@
               </div>
             </div>
             <hr/>
+          </div>
           </div>
             
 

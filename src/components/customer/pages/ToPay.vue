@@ -17,8 +17,8 @@
           </a>
           </p>
           <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                <div class=" mb-3 bigmedia" v-for="item in cart.carts" :key="item.id" v-if="cart.carts" >
+            <div class="card card-body" v-if="cart.carts">
+                <div class=" mb-3 bigmedia" v-for="item in cart.carts" :key="item.id"  >
                   <div class="row ">
                     <div class="col-6 text-left">{{ item.product.title }}</div>
                     <div class="col text-left">{{ item.qty }}/{{ item.product.unit }}</div>
@@ -31,7 +31,8 @@
               </div>
               
               <!-- smallmedia -->
-              <div class="mb-3 smallmedia" v-for="item in cart.carts"  v-if="cart.carts" >  
+              <div v-if="cart.carts">
+              <div class="mb-3 smallmedia" v-for="item in cart.carts"   >  
                 <div class="row">
                   <div class="col-2 pb-3 text-right"><button type="button" class="btn btn-outline-danger btn-sm"
                         @click="removeCartItem(item.id)">
@@ -47,6 +48,7 @@
                     <div class="text-success" v-if="item.coupon">已套用優惠券</div>
                   </div>
                 </div>
+              </div>
               </div>
               <hr/>
                 <div class="row">

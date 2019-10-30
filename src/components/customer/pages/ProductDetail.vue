@@ -28,13 +28,12 @@
                 <div class="maybelike">
                     <p>別人也看了...</p>
                     <hr>
-                    <div class="row">
-                        <div class="col-4 maybelikecontent" v-for="(item,index) in maybeLike" v-if="index<3">
-                            <button class="maybelikepic" :style="{backgroundImage:`url(${item.imageUrl})`}" @click="getProductDetail2(item.id)"> </button>
-
-                            
+                    <div class="row" >
+                        <div class="col-4 maybelikecontent" v-for="(item,index) in maybeLike" >
+                            <div v-if="index<3">
+                            <button class="maybelikepic" :style="{backgroundImage:`url(${item.imageUrl})`}" @click="toDetailPage(item.id)"> </button>
                             <h6>{{ item.title }}  {{ item.price | currency }} 元</h6>
-
+                            </div>
                         </div>
 
                     </div>
@@ -61,12 +60,11 @@
                     <p>別人也看了...</p>
                     <hr>
                     <div class="row">
-                        <div class="col-4 sm-maybelikecontent" v-for="(item,index) in maybeLike" v-if="index<3">
-                            <button class="sm-maybelikepic" :style="{backgroundImage:`url(${item.imageUrl})`}" @click="getProductDetail2(item.id)"> </button>
-
-                            
+                        <div class="col-4 sm-maybelikecontent" v-for="(item,index) in maybeLike" >
+                            <div v-if="index<3">
+                            <button class="sm-maybelikepic" :style="{backgroundImage:`url(${item.imageUrl})`}" @click="toDetailPage(item.id)"> </button>
                             <h6>{{ item.title }}  {{ item.price | currency }} 元</h6>
-
+                            </div>
                         </div>
 
                         </div>
@@ -92,8 +90,8 @@ export default {
     
     data(){
         return{
-            products:{},
-            product:{},
+            products:[],
+            product:[],
             category:"",
             id:"",
             isLoading: false,
@@ -101,7 +99,7 @@ export default {
               loadingItem:'', //上傳圖片的動畫讀取的變數 在index.html中使用CDN方式載入動畫
             },
             qty: 1,
-            cart: {},
+            cart: [],
             cartlength:'',
             isDisabled:false,
             
@@ -152,26 +150,11 @@ export default {
           });
            vm.isDisabled=false;
         },
-        getProductDetail2(id) {
-            this.$router.push(`/ProductDetail/${id}`);
-          var id = this.$route.params.productId;
-          const vm = this;
-          const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
-          vm.status.loadingItem = id;
-          this.$http.get(url).then((response) => {
-            vm.product = response.data.product;
-            vm.category = response.data.product.category;
-            vm.id = response.data.product.id;
-            // $('#productModal').modal('show');
-            
-            console.log(vm.category);
-            vm.status.loadingItem = false;
-          });
-        },
         toDetailPage(id) {
           console.log(id);
           this.$router.push(`/ProductDetail/${id}`);
-          getProductDetail();
+          this.getProductDetail()
+    
         },
         getCart() {
           const vm = this;
@@ -190,7 +173,10 @@ export default {
             maybeLike(){
             return this.products.filter((item,i)=>{
             return item.category==this.category && item.id != this.id
-            })
+            });
+           
+        
+
       }
 
         },

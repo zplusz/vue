@@ -21,10 +21,10 @@
               @click.prevent="change('紐澳')" :class="{'searchbt':search=='紐澳'}" >紐澳</a>
               </nav>                  
           </div>    
-            <div class="album py-5 bg-light" style="min-height:450px">
+            <div class="album py-5" style="min-height:450px">
                 <div class="container">
                   <div :class="{'notmatch':isNotMatch}" v-if="isNotMatch">
-                    沒有符合的內容
+                    <p v-if="!isLoading">沒有符合的內容</p>
                   </div>
                 <div class="row">
                     <div class="col-md-4 cardmain" v-for="(item,key) in filterDatas[currentPage]" :key="item.id">
@@ -202,6 +202,7 @@ export default {
           })
         }else{
           items=this.products;
+          
         }
 
         //篩選關鍵字
