@@ -28,7 +28,7 @@
                   </div>
                 <div class="row">
                     <div class="col-md-4 cardmain" v-for="(item,key) in filterDatas[currentPage]" :key="item.id">
-                    <div class="card mb-4 shadow-sm border border-secondary " style="height:400px" >
+                    <div class="card mb-4 shadow-sm border border-secondary " style="height:430px" >
                         <div class="bd-placeholder-img card-img-top pictureeffect "  :style="{backgroundImage:`url(${item.imageUrl})`}"></div>
                         <button class="pictureeffected" @click="toDetailPage(item.id)"> LOOK</button>
                         <div class="card-body">
@@ -280,7 +280,7 @@ export default {
   height:208px; 
   width: 336px;
   position:absolute; 
-  bottom:189px; 
+  bottom:219px; 
   left:1px;
   color: rgb(214, 214, 214);
   font-size: 20px;
@@ -340,7 +340,7 @@ export default {
 
 
 .item-description{
-  width: 18em;
+  width: 15em;
   white-space: nowrap;
   overflow:hidden;
   text-overflow:ellipsis;

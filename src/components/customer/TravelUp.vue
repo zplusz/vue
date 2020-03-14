@@ -122,7 +122,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="d-flex">
-                        <div class="mr-2 btimage" style="background-image:url(http://www.xizanglvxing.com/UploadFiles/20123/201203161127050071.jpg)"></div>
+                        <div class="mr-2 btimage" style="background-image:url(http://5b0988e595225.cdn.sohucs.com/images/20181219/3a78c663dafe4b94a8ed7064b250680e.jpeg)"></div>
                         <div>
                             <h3>西藏拉薩</h3>
                             <p>布達拉宮坐落在中國西藏自治區首府拉薩市區西北的瑪布日山（紅山）上，是一座規模宏大的宮堡式建築群，可以說是拉薩這個城市，與整個雪域高原的象徵吧！ 它也是現今世界上海拔最高，集宮殿、城堡及寺院於一體的宏偉建築</p>
