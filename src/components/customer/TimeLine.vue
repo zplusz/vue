@@ -27,33 +27,6 @@ export default {
 </script>
 
 <style>
-/* .cartcheck{
-  color:white;
-  padding-left: 303px;
-  margin-top: -8px;
-  height: 40px;
-  position: absolute;
-  z-index: 1;
-} */
-
-/* .topaycheck{
-  color:white;
-  padding-left: 556px;
-  margin-top: -8px;
-  height: 40px;
-  position: absolute;
-  z-index: 1;
-} */
-/* 
-.finishcheck{
-  color:white;
-  padding-left: 805px;
-  margin-top: -8px;
-  height: 40px;
-  position: absolute;
-  z-index: 1;
-} */
-
 .timeline{
   width: 200px;
   margin: 0 auto;
@@ -93,7 +66,7 @@ export default {
     width: 200px;
     margin-top: -21px;
     margin-left: 320px;
-    padding-left: 170px;
+    padding-left: 165px;
 }
 
 #firstpoint:before {
